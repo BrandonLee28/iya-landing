@@ -41,8 +41,10 @@ export default function Home() {
         {/* Background Effects */}
         <div className="absolute inset-0 z-0" aria-hidden="true">
           <GovernanceVis />
+          {/* Blur layer for center readability */}
+          <div className="absolute inset-0 bg-[#050505]/40 backdrop-blur-[2px]" />
           {/* Void Black Vignette to fade edges */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#050505_95%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,#050505_90%)]" />
         </div>
 
         {/* Hero Content */}
@@ -64,17 +66,6 @@ export default function Home() {
           <div className="pt-8 w-full flex flex-col items-center gap-6">
             <WaitlistForm />
           </div>
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-          className="absolute bottom-12 flex flex-col items-center gap-2 text-neutral-500"
-        >
-          <span className="text-[10px] uppercase tracking-widest">Scroll</span>
-          <div className="w-[1px] h-12 bg-gradient-to-b from-neutral-500 to-transparent" />
         </motion.div>
 
       </section>
