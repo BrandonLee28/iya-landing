@@ -115,7 +115,7 @@ export default function GovernanceVis() {
           const char = chars[Math.max(0, Math.min(chars.length - 1, charIndex))];
 
           // Uniform Brightness (No Flashlight)
-          const opacity = val * mask * 0.8; // Increased from 0.3 for better visibility
+          const opacity = val * mask * 1.5; // Increased from 0.8 to compensate for the hero blur
 
           // Brand Orange Color (Rose Orange)
           // rgba(255, 127, 80, opacity)
