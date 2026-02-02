@@ -5,7 +5,8 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: '/project-governance',
+  basePath: '/iya-landing',
+  trailingSlash: true,
 };
 
 export default nextConfig;
