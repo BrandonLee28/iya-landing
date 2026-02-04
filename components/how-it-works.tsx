@@ -187,7 +187,7 @@ export default function HowItWorks() {
                                 transition={{ duration: 0.6 }}
                                 className="flex-1 space-y-6"
                             >
-                                <div className="text-neutral-800 font-mono text-6xl font-bold" aria-hidden="true">
+                                <div className="text-white/10 font-mono text-6xl font-bold" aria-hidden="true">
                                     {step.id}
                                 </div>
                                 <h3 className="text-3xl font-medium">{step.title}</h3>

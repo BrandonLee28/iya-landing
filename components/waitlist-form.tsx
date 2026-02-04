@@ -43,16 +43,16 @@ export default function WaitlistForm() {
 
     if (status === "success") {
         return (
-            <div className="flex items-center justify-center gap-2 p-4 bg-green-500/10 rounded-full border border-green-500/20 text-green-400 backdrop-blur-md animate-in fade-in zoom-in duration-300 shadow-[0_0_20px_rgba(74,222,128,0.1)]">
-                <Check className="w-5 h-5" />
-                <span className="font-mono text-sm">You are on the list. Verification pending.</span>
+            <div className="flex items-center justify-center gap-2 px-6 py-4 bg-green-500/10 rounded-full border border-green-500/20 text-green-400 backdrop-blur-md animate-in fade-in zoom-in duration-300">
+                <Check className="w-4 h-4" />
+                <span className="font-mono text-sm">You're on the list. Verification pending.</span>
             </div>
         );
     }
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 w-full max-w-md mx-auto relative z-20">
-            <div className="relative flex-grow">
+        <form onSubmit={handleSubmit} className="relative w-full max-w-sm mx-auto group">
+            <div className="flex items-center w-full bg-white/5 border border-white/10 rounded-full p-1 focus-within:ring-1 focus-within:ring-white/20 transition-all duration-300 hover:bg-white/[0.07]">
                 <input
                     type="email"
                     placeholder="enterprise@domain.com"
@@ -60,25 +60,26 @@ export default function WaitlistForm() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={status === "loading"}
-                    className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-full text-white placeholder:text-neutral-500 focus:outline-none focus:border-white/40 focus:ring-1 focus:ring-white/20 backdrop-blur-sm transition-all font-mono text-sm disabled:opacity-50 shadow-sm"
+                    className="flex-grow bg-transparent border-none text-white px-5 py-3 focus:outline-none font-mono text-sm placeholder:text-neutral-600 disabled:opacity-50 min-w-0"
                 />
+                <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="px-5 py-2.5 bg-white text-black font-medium text-sm rounded-full hover:bg-neutral-200 transition-all disabled:opacity-50 flex items-center gap-2 flex-shrink-0"
+                >
+                    {status === "loading" ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                        <>
+                            <span>Join</span>
+                            <ArrowRight className="w-4 h-4" />
+                        </>
+                    )}
+                </button>
             </div>
-            <button
-                type="submit"
-                disabled={status === "loading"}
-                className="px-8 py-4 bg-white text-black font-medium text-sm rounded-full hover:bg-gray-200 transition-all disabled:opacity-50 flex items-center justify-center gap-2 min-w-[140px] shadow-[0_0_20px_rgba(255,255,255,0.1)]"
-            >
-                {status === "loading" ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                ) : (
-                    <>
-                        Join Waitlist
-                        <ArrowRight className="w-4 h-4" />
-                    </>
-                )}
-            </button>
+
             {status === "error" && (
-                <p className="absolute -bottom-6 left-5 text-red-500 text-[10px] font-mono animate-pulse">
+                <p className="absolute -bottom-8 left-6 text-red-500 text-[11px] font-mono animate-pulse">
                     Submission failed. Please try again.
                 </p>
             )}

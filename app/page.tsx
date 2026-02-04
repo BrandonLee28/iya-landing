@@ -1,96 +1,94 @@
 "use client";
 
-import { content } from "@/lib/data";
-
 import WaitlistForm from "@/components/waitlist-form";
-import HowItWorks from "@/components/how-it-works";
 import GovernanceVis from "@/components/governance-vis";
 import { motion } from "framer-motion";
-import { Lock, Activity, Globe, ShieldCheck, Zap, Server, AlertTriangle } from "lucide-react";
-import Link from "next/link";
-import { useRef } from "react";
 
 export default function Home() {
-  const scrollToWaitlist = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+    return (
+        <div className="relative h-screen w-full overflow-y-auto md:overflow-hidden bg-[#0A0A0A] font-sans selection:bg-[#FF7F50] selection:text-white">
 
-  return (
-    <div className="min-h-screen bg-[#0A0A0A] font-sans selection:bg-[#FF7F50] selection:text-white">
-      {/* Navigation - Always Visible */}
-      <nav className="fixed top-0 w-full p-6 flex justify-between items-center z-50">
-        <Link href="/" aria-label="iya Home" className="font-sans font-bold text-3xl tracking-tighter text-white flex items-center gap-2">
-          iya
-        </Link>
-        <div className="flex items-center gap-6">
-          <Link href="/whitepaper" className="text-xs font-medium uppercase tracking-widest text-neutral-400 hover:text-[#FF7F50] transition-colors">
-            Whitepaper
-          </Link>
-          <button
-            onClick={scrollToWaitlist}
-            className="px-5 py-2 border border-white/20 rounded-full text-[10px] font-medium uppercase tracking-widest text-white hover:bg-[#FF7F50] hover:border-[#FF7F50] hover:text-white transition-all duration-300 shadow-[0_0_20px_rgba(255,127,80,0)_inset] hover:shadow-[0_0_20px_rgba(255,127,80,0.2)_inset]"
-          >
-            Join Waitlist
-          </button>
+            {/* Hero Section - Full viewport, centered */}
+            <section className="relative min-h-full flex flex-col items-center justify-center bg-[#050505] text-white">
+
+                {/* ASCII Background */}
+                <div className="absolute inset-0 z-0" aria-hidden="true">
+                    <GovernanceVis />
+                    <div className="absolute inset-0 bg-[#050505]/30 backdrop-blur-[1px]" />
+                </div>
+
+                {/* Spotlight Effect */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/5 rounded-full blur-[120px] pointer-events-none" />
+
+                {/* Top Navigation */}
+                <nav className="absolute top-0 left-0 right-0 p-6 flex justify-between items-start z-20">
+                    {/* Tiny Logo */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.8, delay: 1 }}
+                        className="text-2xl font-bold tracking-tighter text-white"
+                    >
+                        iya
+                    </motion.div>
+
+                    {/* Accelerator Badge */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.8, delay: 1.2 }}
+                        className="flex flex-col items-end text-neutral-500 text-sm font-medium"
+                    >
+                        <span className="uppercase tracking-widest text-[11px] mb-1 opacity-70">Participating in</span>
+                        <div className="flex items-center gap-2 text-neutral-300 transition-all duration-300 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] cursor-default">
+                            Klaus Startup Challenge
+                        </div>
+                    </motion.div>
+                </nav>
+
+                {/* Hero Content */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1.2, delay: 0.3 }}
+                    className="relative z-10 flex flex-col items-center justify-center px-6 text-center max-w-4xl mx-auto"
+                >
+                    {/* Main Headline */}
+                    <motion.h1
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                        className="font-sans font-bold text-6xl sm:text-8xl md:text-9xl leading-[0.9] tracking-tighter mb-8"
+                    >
+                        <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">The Dashcam</span>
+                        <br />
+                        <span className="text-neutral-500">for AI Agents</span>
+                    </motion.h1>
+
+                    {/* Subheadline/Value Prop */}
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.7 }}
+                        className="text-lg md:text-2xl text-neutral-400 font-light max-w-2xl leading-relaxed mb-10"
+                    >
+                        Give companies the evidence they need to use autonomous AI without taking on massive legal risks.
+                    </motion.p>
+
+                    {/* Waitlist */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.9 }}
+                        className="w-full max-w-md flex flex-col items-center"
+                    >
+                        <WaitlistForm />
+
+
+                    </motion.div>
+                </motion.div>
+
+            </section>
         </div>
-      </nav>
-
-      {/* Hero Section - Simple & Centered */}
-      <section className="relative h-screen flex flex-col items-center justify-center bg-[#050505] text-white overflow-hidden">
-
-        {/* Background Effects */}
-        <div className="absolute inset-0 z-0" aria-hidden="true">
-          <GovernanceVis />
-          {/* Subtle overlay for contrast */}
-          <div className="absolute inset-0 bg-[#050505]/30 backdrop-blur-[1px]" />
-        </div>
-
-        {/* Hero Content */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative z-10 max-w-5xl px-6 text-center space-y-8"
-        >
-          <h1 className="font-sans font-medium text-6xl md:text-8xl leading-[0.95] tracking-tight text-white">
-            The System of Record
-            <span className="text-neutral-400 block mt-2">for the Agentic Enterprise.</span>
-          </h1>
-
-          <p className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed text-neutral-300 font-light">
-            We provide an immutable audit trail for autonomous AI agents, capturing intent and verifying identity.
-          </p>
-
-          <div className="pt-8 w-full flex flex-col items-center gap-6">
-            <WaitlistForm />
-          </div>
-        </motion.div>
-
-      </section>
-
-      {/* How It Works Section */}
-      <HowItWorks />
-
-      {/* Footer */}
-      <footer className="border-t border-white/5 bg-[#0A0A0A] py-24 px-6 text-center text-[#EDEDED]">
-        <div className="max-w-2xl mx-auto space-y-12">
-          <div className="flex flex-col items-center gap-4">
-            <div className="font-sans font-bold text-3xl tracking-tighter text-white">
-              iya
-            </div>
-            <h2 className="font-sans text-xl font-light text-neutral-400">{content.footer}</h2>
-          </div>
-
-          <div className="flex justify-center gap-8 text-xs text-neutral-500 font-mono uppercase tracking-widest">
-            <Link href="/whitepaper" className="hover:text-white cursor-pointer transition-colors">
-              Whitepaper
-            </Link>
-          </div>
-          <p className="text-neutral-600 text-[10px] mt-12">
-            &copy; 2026 iya.
-          </p>
-        </div>
-      </footer>
-    </div>
-  );
+    );
 }
